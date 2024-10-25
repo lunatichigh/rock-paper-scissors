@@ -6,13 +6,12 @@ computerScore = 0;
 //Play Round
 function playRound() {
 
-    let computerChoice = getComputerChoice(0, 2);
+let computerChoice = getComputerChoice(0, 2);
 
 function getComputerChoice(min, max){
     return Math.round(Math.random() * (max - min));
 }
 console.log(computerChoice);
-//console.log(getComputerChoice(0, 2));
 
 //Human choice
 //Get the human's choice by using a prompt
@@ -57,16 +56,7 @@ console.log(humanChoice);
     else {
         console.log("It's a draw!")
     }
-    //Check if the player has won or lost against the computer by comparing humanScore and computerScore values
-    // if (humanScore > computerScore) {
-    //     console.log("Winner winner chimkin dinner! You won the round!")
-    // } 
-    // else if (humanScore < computerScore){
-    //     console.log("Waa, waa... you lost the round.")
-    // }
-    // else {
-    //     console.log("A tie! Nobody won!")
-    // }
+    
 }
 //iterate through 5 rounds using for loop
 //Check whether the player or cpu has incremented more wins and display who won by comparing the two values after the for loop is finished
@@ -80,6 +70,9 @@ function playGame(){
     } 
     else if (humanScore === 0 && computerScore === 0){
         console.log("You somehow managed to tie all 5 rounds!")
+    }
+    else if (humanScore === computerScore){
+        console.log("Wow! The rounds are all tied up!")
     }
     else {
         console.log("The CPU has won more rounds than you! Boo!")
