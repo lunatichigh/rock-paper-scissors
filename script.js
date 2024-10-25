@@ -1,3 +1,6 @@
+//Global scope variables
+humanScore = 0;
+computerScore = 0;
 //Gets the computer's choice
 function getComputerChoice(min, max){
   return Math.random() * (max - min) + 0;
