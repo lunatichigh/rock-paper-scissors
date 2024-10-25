@@ -1,35 +1,26 @@
-//Global scope variables
+//Global Scope
 humanScore = 0;
 computerScore = 0;
-//Gets the computer's choice
+
+//Computer Choice
+//Get the computer's choice by making function getComputerChoice
+//return rounded random number back to getComputerChoice with values between 0 - 2
+
 function getComputerChoice(min, max){
-  return Math.random() * (max - min) + 0;
+    return Math.round(Math.random() * (max - min));
 }
 
-let computerChoice = Math.round(getComputerChoice(0, 2));
-console.log(computerChoice);
+console.log(getComputerChoice(0, 2));
 
-if (computerChoice == 0){
-    console.log("Rock");
-} else if (computerChoice == 1) {
-    console.log("Paper");
-} else {
-    console.log("Scissors");
-}
+//Human choice
+//Get the human's choice by using a prompt
+//Store player's choice in humanChoice
 
-//Gets the human's choice
-let humanChoice = window.prompt("Pick Rock, Paper or Scissors:" ,);
-console.log(humanChoice);
+let humanChoice = getHumanChoice();
 
 function getHumanChoice(){
-    let humanChoice = window.prompt("Pick Rock, Paper or Scissors:" ,);
+    return prompt("Choose Rock, Paper, or Scissors.")
+}
 console.log(humanChoice);
-}
 
-if (humanChoice === "Rock"){
-    console.log("You chose Rock.");
-} else if (humanChoice === "Paper"){
-    console.log("You chose Paper.");
-} else {
-    console.log("You chose Scissors.");
-}
+
