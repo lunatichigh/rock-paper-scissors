@@ -1,15 +1,10 @@
-//UI Logic ******************
-function chooseRock() {
-    alert("YOU CHOSE ROCK!");
-}
+// //Global Scope
+let humanScore = 0;
+let computerScore = 0;
+let roundsPlayed = 0;
 
-function choosePaper() {
-    alert("YOU CHOSE PAPER!");
-}
+//UI Logic *********************************************
 
-function chooseScissors() {
-    alert("YOU CHOSE SCISSORS!");
-}
 
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
@@ -19,87 +14,163 @@ rock.addEventListener("click", chooseRock);
 paper.addEventListener("click", choosePaper);
 scissors.addEventListener("click", chooseScissors);
 
-//****************************
-// //Global Scope
-// humanScore = 0;
-// computerScore = 0;
+// const container = document.querySelector("#container");
 
+// const results = document.createElement("div");
+// results.classList.add("results");
+// results.textContent = `Player Score ${humanScore}`;
 
-// //Play Round
-// function playRound() {
+// container.appendChild(results);
 
-// let computerChoice = getComputerChoice(0, 2);
+// Game Logic*******************************************************
 
-// function getComputerChoice(min, max){
-//     return Math.round(Math.random() * (max - min));
-// }
-// console.log(computerChoice);
+function chooseRock() {
 
-// //Human choice
-// //Get the human's choice by using a prompt
-// //Store player's choice in humanChoice
+const container = document.querySelector("#container");
 
-// let humanChoice = getHumanChoice();
+const results = document.createElement("div");
+results.classList.add("results");
 
-// function getHumanChoice(){
-//     // return prompt("Choose Rock, Paper, or Scissors.").toLowerCase();
-// }
-// // console.log(humanChoice);
-
-//     //Player Chooses Rock
-//     if (humanChoice === "rock" && computerChoice === 2){
-//         console.log("You win! Rock beats Scissors!");
-//         humanScore++;
-//     } 
+const announceWinner = document.createElement("div");
+announceWinner.classList.add("announceWinner");
     
-//     else if (humanChoice === "rock" && computerChoice === 1) {
-//         console.log("You lose! Paper beats Rock!");
-//         computerScore++;
-//     }
-//     //Player Chooses Paper
-//     else if (humanChoice === "paper" && computerChoice === 0){
-//         console.log("You win! Paper beats Rock!");
-//         humanScore++;
-//     }
-//     else if (humanChoice === "paper" && computerChoice === 2){
-//         console.log("You lose! Scissors beats Paper!");
-//         computerScore++;
-//     }
-//     //Player Chooses Scissors
-//     else if (humanChoice === "scissors" && computerChoice === 1){
-//         console.log("You win! Scissors beats Paper!");
-//         humanScore++;
-//     }
-//     else if (humanChoice === "scissors" && computerChoice === 0){
-//         console.log("You lose! Rock beats Scissors!");
-//         computerScore++;
-//     }
+container.appendChild(results);
+container.appendChild(announceWinner);
+
+let computerChoice = getComputerChoice(0, 2);
+        
+function getComputerChoice(min, max){
+
+    return Math.round(Math.random() * (max - min));
+
+}
+    console.log(computerChoice);
+
+    if (computerChoice === 2){
+        console.log("You win! Rock beats Scissors!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${++humanScore} VS Computer Score: ${computerScore}`;
+    } 
     
-//     else {
-//         console.log("It's a draw!")
-//     }
+    else if (computerChoice === 1) {
+        console.log("You lose! Paper beats Rock!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${++computerScore}`;
+    }
+    else {
+        console.log("Draw!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${computerScore}`;
+    }
+
+    if (humanScore > computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: Player! You've won more rounds than the CPU! Congrats!";
+    } 
+    else if (humanScore === computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Draw!";
+    }
+    else if (humanScore < computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: CPU! The CPU has won more rounds than you! Boo!";
+    }
+    console.log("Player Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+    console.log("Rounds Played: " + roundsPlayed);
+}
+
+
+function choosePaper() {
+
+    const container = document.querySelector("#container");
+
+    const results = document.createElement("div");
+    results.classList.add("results");
     
-// }
-// playRound();
-//iterate through 5 rounds using for loop
-//Check whether the player or cpu has incremented more wins and display who won by comparing the two values after the for loop is finished
-// function playGame(){
+    const announceWinner = document.createElement("div");
+    announceWinner.classList.add("announceWinner");
+        
+    container.appendChild(results);
+    container.appendChild(announceWinner);
+
+    let computerChoice = getComputerChoice(0, 2);
+        
+    function getComputerChoice(min, max){
     
-//     for (let roundsPlayed = 0; roundsPlayed < 5; roundsPlayed++){
-//         playRound();
-//     }
-//     if (humanScore > computerScore){
-//         console.log("You've won more rounds than the CPU! Congrats!")
-//     } 
-//     else if (humanScore === 0 && computerScore === 0){
-//         console.log("You somehow managed to tie all 5 rounds!")
-//     }
-//     else if (humanScore === computerScore){
-//         console.log("Wow! The rounds are all tied up!")
-//     }
-//     else {
-//         console.log("The CPU has won more rounds than you! Boo!")
-//     }
-// }
-// playGame();
+        return Math.round(Math.random() * (max - min));
+    
+    }
+        console.log(computerChoice);
+
+    if (computerChoice === 0){
+        console.log("You win! Paper beats Rock!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${++humanScore} VS Computer Score: ${computerScore}`;
+    }
+    else if (computerChoice === 2){
+        console.log("You lose! Scissors beats Paper!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${++computerScore}`;
+    }
+    else {
+        console.log("Draw!");
+        results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${computerScore}`;
+    }
+    if (humanScore > computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: Player! You've won more rounds than the CPU! Congrats!";
+    } 
+    else if (humanScore === computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Draw!";
+    }
+    
+    else if (humanScore < computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: CPU! The CPU has won more rounds than you! Boo!";
+    }
+    console.log("Player Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+    console.log("Rounds Played: " + roundsPlayed);
+}
+
+function chooseScissors() {
+
+    const container = document.querySelector("#container");
+
+    const results = document.createElement("div");
+    results.classList.add("results");
+    
+    const announceWinner = document.createElement("div");
+    announceWinner.classList.add("announceWinner");
+        
+    container.appendChild(results);
+    container.appendChild(announceWinner);
+
+let computerChoice = getComputerChoice(0, 2);
+        
+function getComputerChoice(min, max){
+    
+        return Math.round(Math.random() * (max - min));
+    
+    }
+        console.log(computerChoice);
+
+    if (computerChoice === 1){
+            console.log("You win! Scissors beats Paper!");
+            results.textContent = `Round: ${++roundsPlayed} Player Score: ${++humanScore} VS Computer Score: ${computerScore}`;
+        }
+    else if (computerChoice === 0){
+            console.log("You lose! Rock beats Scissors!");
+            results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${++computerScore}`;
+        }
+    else {
+            console.log("Draw!");
+            results.textContent = `Round: ${++roundsPlayed} Player Score: ${humanScore} VS Computer Score: ${computerScore}`;
+        }
+    
+    if (humanScore > computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: Player! You've won more rounds than the CPU! Congrats!";
+        } 
+
+    else if (humanScore === computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Draw!";
+        }
+    else if (humanScore < computerScore && roundsPlayed === 5){
+        announceWinner.textContent = "Winner: CPU! The CPU has won more rounds than you! Boo!";
+        }
+        console.log("Player Score: " + humanScore);
+        console.log("Computer Score: " + computerScore);
+        console.log("Rounds Played: " + roundsPlayed);
+    }
 
